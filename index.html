@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Active/current link */
+.navbar a.active {
+  background-color: #666;
+  color: white;
+}
+
+/* Column container */
+.row {  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ULTRON</h1>
+  <p>An <b>AI</b> assistant created by programmer kaustubh.</p>
+</div>
+
+<div class="navbar">
+  <a href="C:\Users\kaustubh\Desktop\ULTRON" class="active">Home</a>
+  <a href="C:\Users\kaustubh\Desktop\ULTRON" class="active">ULtron</a>
+</div>
+
+
+  <div class="main">
+    <h2>INTRODUCTION </h2>
+    <p>Introducing your AI Assistant: Enhancing Your Everyday Experience
+
+        Welcome to a new era of intelligent assistance! We are thrilled to introduce our state-of-the-art AI Assistant, designed to enhance and simplify your everyday life. This advanced virtual companion is built on the cutting-edge technology of OpenAI's GPT-3.5 architecture, providing you with a powerful and intuitive solution for a wide range of tasks and interactions.
+        
+        Our AI Assistant is here to assist you with a vast array of information, tasks, and queries. From answering your questions, providing insightful recommendations, to helping you accomplish various tasks efficiently, it's like having a knowledgeable and resourceful friend at your fingertips. Whether you need assistance with research, planning, organization, or simply engaging in natural conversation, our AI Assistant is equipped to meet your needs.
+        
+        We understand that communication is key, and we have focused on developing an AI Assistant that is not only intelligent but also empathetic and responsive. Our advanced language model is trained to understand context, nuances, and conversational cues, enabling it to engage in meaningful and dynamic conversations. Through continuous learning and adaptation, our AI Assistant aims to provide an increasingly personalized experience tailored to your unique preferences and requirements.
+        
+        Your privacy and security are of paramount importance to us. We have implemented robust measures to ensure the confidentiality and protection of your data. Any information shared with the AI Assistant is treated with the utmost confidentiality, and we strictly adhere to privacy guidelines and regulations.
+        
+        With our AI Assistant by your side, you can navigate complex tasks more efficiently, gain new insights, and explore a world of knowledge with ease. From solving problems to exploring new horizons, our goal is to empower you to achieve more in less time.
+        
+        We invite you to embark on this exciting journey with our AI Assistant and discover the boundless possibilities it offers. Experience the convenience, intelligence, and reliability that our AI Assistant brings to your fingertips. Together, let's redefine the way you interact with technology and unlock new levels of productivity and creativity.
+        
+        Welcome to a new era of intelligent assistance. Welcome to the future. </p>
+    <br>
+    <h2>NOW Lets Start To build our AI assistant</h2>
+   
+    <p>**Remember python is case sensitive language and copy the code as mentioned **</p>
+    <p>first create a file called (main.py) and then copy the code given below</p>
+    <head>
+        <meta charset="UTF-8">
+        <title>Black Box Example</title>
+        <style>
+          /* CSS styles go here */
+          .black-box {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            font-family: monospace;
+          }
+        </style>
+      </head>
+        <body>
+        <div class="black-box">
+          <pre>
+            <code>
+                import speech_recognition as sr
+                import os
+                import webbrowser
+                import openai
+                from config import apikey
+                import datetime
+                import random
+                import numpy as np
+                
+                
+                chatStr = ""
+                # https://youtu.be/Z3ZAJoi4x6Q
+                def chat(query):
+                    global chatStr
+                    print(chatStr)
+                    openai.api_key = apikey
+                    chatStr += f"Harry: {query}\n ULtron: "
+                    response = openai.Completion.create(
+                        model="text-davinci-003",
+                        prompt= chatStr,
+                        temperature=0.7,
+                        max_tokens=256,
+                        top_p=1,
+                        frequency_penalty=0,
+                        presence_penalty=0
+                    )
+                    # todo: Wrap this inside of a  try catch block
+                    say(response["choices"][0]["text"])
+                    chatStr += f"{response['choices'][0]['text']}\n"
+                    return response["choices"][0]["text"]
+                
+                
+                def ai(prompt):
+                    openai.api_key = apikey
+                    text = f"OpenAI response for Prompt: {prompt} \n *************************\n\n"
+                
+                    response = openai.Completion.create(
+                        model="text-davinci-003",
+                        prompt=prompt,
+                        temperature=0.7,
+                        max_tokens=256,
+                        top_p=1,
+                        frequency_penalty=0,
+                        presence_penalty=0
+                    )
+                    # todo: Wrap this inside of a  try catch block
+                    # print(response["choices"][0]["text"])
+                    text += response["choices"][0]["text"]
+                    if not os.path.exists("Openai"):
+                        os.mkdir("Openai")
+                
+                    # with open(f"Openai/prompt- {random.randint(1, 2343434356)}", "w") as f:
+                    with open(f"Openai/{''.join(prompt.split('intelligence')[1:]).strip() }.txt", "w") as f:
+                        f.write(text)
+                
+                def say(text):
+                    os.system(f'say "{text}"')
+                
+                def takeCommand():
+                    r = sr.Recognizer()
+                    with sr.Microphone() as source:
+                        # r.pause_threshold =  0.6
+                        audio = r.listen(source)
+                        try:
+                            print("Recognizing...")
+                            query = r.recognize_google(audio, language="en-in")
+                            print(f"User said: {query}")
+                            return query
+                        except Exception as e:
+                            return "Some Error Occurred. Sorry from Jarvis"
+                
+                if __name__ == '__main__':
+                    print('Welcome to Ultron A.I')
+                    say("ultron  A.I")
+                    while True:
+                        print("Listening...")
+                        query = takeCommand()
+                        # todo: Add more sites
+                        sites = [["youtube", "https://www.youtube.com"], ["wikipedia", "https://www.wikipedia.com"], ["google", "https://www.google.com"],]
+                        for site in sites:
+                            if f"Open {site[0]}".lower() in query.lower():
+                                say(f"Opening {site[0]} sir...")
+                                webbrowser.open(site[1])
+                        # todo: Add a feature to play a specific song
+                        if "open music" in query:
+                            musicPath = "/Users/harry/Downloads/downfall-21371.mp3"
+                            os.system(f"open {musicPath}")
+                
+                        elif "the time" in query:
+                            musicPath = "/Users/harry/Downloads/downfall-21371.mp3"
+                            hour = datetime.datetime.now().strftime("%H")
+                            min = datetime.datetime.now().strftime("%M")
+                            say(f"Sir time is {hour} bajke {min} minutes")
+                
+                        elif "open facetime".lower() in query.lower():
+                            os.system(f"open /System/Applications/FaceTime.app")
+                
+                        elif "open pass".lower() in query.lower():
+                            os.system(f"open /Applications/Passky.app")
+                
+                        elif "Using artificial intelligence".lower() in query.lower():
+                            ai(prompt=query)
+                
+                        elif "Jarvis Quit".lower() in query.lower():
+                            exit()
+                
+                        elif "reset chat".lower() in query.lower():
+                            chatStr = ""
+                
+                        else:
+                            print("Chatting...")
+                            chat(query)
+                
+                
+                
+                
+                
+                        # say(query)
+            </code>
+          </pre>
+        </div>
+      </body>
+      <head>
+        <meta charset="UTF-8">
+    
+        <style>
+          /* CSS styles go here */
+          .black-box {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            font-family: monospace;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="">
+          <pre>
+            <code>
+                # todo: Add your api key here
+                apikey = "Your-Open-AI-Key"
+            </code>
+          </pre>
+        </div>
+      
+      <p>now make file named "config.py" and put your Open ai api key .Steps to get openai api keys are follows  </p>
+      
+      <p>1.Visit the OpenAI website: Go to the OpenAI website at https://openai.com/.
+
+        Explore the OpenAI API: Learn about the OpenAI API, its features, and the services it provides. Familiarize yourself with the capabilities and potential use cases of the API.</p>
+      <p>2.Sign up for an account: If you haven't already, create an account on the OpenAI platform. Follow the registration process and provide any necessary information.
+
+        Check for availability: The OpenAI API may have limited availability or be accessible through a waiting list. Ensure that the API is currently available and accepting new users. You may need to join a waiting list or request access.
+        
+        </p>
+      <p>3.Access the API documentation: Once you have access to the OpenAI API, visit the OpenAI documentation website. The documentation provides detailed information on how to use the API, including endpoints, authentication methods, and example code.
+
+        Generate API keys: In the OpenAI developer dashboard, you should be able to generate API keys specific to your account. These API keys are used for authentication and to identify your requests to the OpenAI API.
+        
+        </p>
+      <p>4.Follow the API integration guide: Review the API integration guide provided by OpenAI. It will walk you through the process of making API requests, handling responses, and implementing the AI capabilities in your application.</p>
+      <h3>RUN THE PROGRAM</h3>
+
+
+
+
+
+
+
+
+   </div>
+</div>
+
+<div class="footer">
+  <h2>thank you </h2>
+</div>
+
+</body>
+</html>
